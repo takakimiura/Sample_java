@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/sample")
 public class SampleController {
 
-  private final JdbcTemplate jdbcTemplate;
+  private final JdbcTemplate jdbcTemplate; //final：クラスが派生しないようにする修飾子（元のクラスをいじれないように設定）
 
   @Autowired
-  public SampleController(JdbcTemplate jdbcTemplate) {
+  public SampleController(JdbcTemplate jdbcTemplate) { //JdbcTemplate：JDBCの使用を簡素化し、一般的なエラーの回避に役立つ
     this.jdbcTemplate = jdbcTemplate;
   }
 
@@ -25,7 +25,7 @@ public class SampleController {
 
     String sql = "SELECT id, name, email FROM inquiry WHERE id = 1";
 
-    Map<String, Object> map = jdbcTemplate.queryForMap(sql);
+    Map<String, Object> map = jdbcTemplate.queryForMap(sql); //Map：キーと値の2つの要素をペアにして格納するデータ構造
 
     m.addAttribute("title", "Inquiry Form");
     m.addAttribute("name", map.get("name"));
