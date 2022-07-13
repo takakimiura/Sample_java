@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -14,7 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class InquiryController {
 
   @GetMapping("/form")
-  public String form(InquiryForm inquiryForm, Model m) {
+  public String form(InquiryForm inquiryForm,
+  Model m,
+  @ModelAttribute("complete") String complete
+  ) {
     m.addAttribute("title", "Inquiry Form");
     
     return "/form";
@@ -43,14 +47,21 @@ public class InquiryController {
 
   }
   
-  // @PostMapping("/complete")
-  // public String complete(@Validated InquiryForm inquiryForm,
-  // BindingResult result,
-  // Model m,
-  // RedirectAttributes redirectAttributes
-  // ) {
-  //   if(result.hasErrors())
+  @PostMapping("/complete")
+  public String complete(@Validated InquiryForm inquiryForm,
+  BindingResult result,
+  Model m,
+  RedirectAttributes redirectAttributes
+  ) {
+    if(result.hasErrors()) {
+      m.addAttribute("title", "Inquiry Form");
 
-  // }
+      return "/form";
+    }
+    redirectAttributes.addFlashAttribute("complete", "Registered");
+
+    return "redirect:/inquiry/form";
+
+  }
 
 }
