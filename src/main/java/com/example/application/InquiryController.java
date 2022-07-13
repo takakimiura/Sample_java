@@ -60,7 +60,7 @@ public class InquiryController {
     }
     redirectAttributes.addFlashAttribute("complete", "Registered");
 
-    return "redirect:/inquiry/form";
+    return "redirect:/inquiry/form"; //redirectの場合は指定のURLを全部入力する必要がある
 
   }
 
