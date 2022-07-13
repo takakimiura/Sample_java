@@ -1,19 +1,19 @@
 package com.example.application;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class InquiryForm {
   
-  @Size(min = 1, max = 20, message = "Please input 20characters or less")
+  @Size(min = 1, max = 20, message = "1~20文字までで入力してください")
   private String name;
 
-  @NotNull
-  @Email(message = "Invalid E-mail Format")
+  @NotEmpty
+  @Email(message = "メールアドレスを入力してください")
   private String email;
 
-  @NotNull
+  @NotEmpty
   private String contents;
 
   

@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/inquiry")
@@ -42,4 +43,14 @@ public class InquiryController {
 
   }
   
+  // @PostMapping("/complete")
+  // public String complete(@Validated InquiryForm inquiryForm,
+  // BindingResult result,
+  // Model m,
+  // RedirectAttributes redirectAttributes
+  // ) {
+  //   if(result.hasErrors())
+
+  // }
+
 }
